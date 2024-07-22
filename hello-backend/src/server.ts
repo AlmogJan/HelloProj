@@ -1,23 +1,25 @@
-// Import the 'express' module along with 'Request' and 'Response' types from express
 import express, { Request, Response } from 'express';
-import cors from 'cors'
+import cors from 'cors';
+import path from 'path';
 
-// Create an Express application
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Specify the port number for the server
-const port: number = 3000;
+// Serve static files from the 'public' directory
+app.use(express.static(path.resolve(__dirname, '../public')));
 
-// Define a route for the root path ('/')
-app.get('/', (req, res) => {
-    // Send a response to the client
+const port = process.env.PORT || 3000;
+
+app.use('/api/hello', (req: Request, res: Response) => {
     res.json({ message: "Hello from server!" });
 });
 
-// Start the server and listen on the specified port
+app.get('/*', (req: Request, res: Response) => {
+    console.log('hi');
+    res.sendFile(path.resolve(__dirname, '../public/index.html'));
+});
+
 app.listen(port, () => {
-    // Log a message when the server is successfully running
     console.log(`Server is running on http://localhost:${port}`);
 });
