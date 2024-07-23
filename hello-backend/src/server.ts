@@ -9,14 +9,15 @@ app.use(express.json());
 // Serve static files from the 'public' directory
 app.use(express.static(path.resolve(__dirname, '../public')));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3030;
 
+// API route
 app.use('/api/hello', (req: Request, res: Response) => {
     res.json({ message: "Hello from server!" });
 });
 
+// Serve index.html for all other routes
 app.get('/*', (req: Request, res: Response) => {
-    console.log('hi');
     res.sendFile(path.resolve(__dirname, '../public/index.html'));
 });
 

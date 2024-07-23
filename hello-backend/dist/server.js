@@ -11,12 +11,13 @@ app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 // Serve static files from the 'public' directory
 app.use(express_1.default.static(path_1.default.resolve(__dirname, '../public')));
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3030;
+// API route
 app.use('/api/hello', (req, res) => {
     res.json({ message: "Hello from server!" });
 });
+// Serve index.html for all other routes
 app.get('/*', (req, res) => {
-    console.log('hi');
     res.sendFile(path_1.default.resolve(__dirname, '../public/index.html'));
 });
 app.listen(port, () => {

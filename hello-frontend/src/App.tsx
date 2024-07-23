@@ -4,7 +4,7 @@ export function App() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/hello")
+    fetch("http://localhost:3030/api/hello")
       .then((res) => res.json())
       .then((data) => setMessage(data.message));
   }, []);
