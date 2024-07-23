@@ -4,7 +4,7 @@ export function App() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3030/api/hello")
+    fetch("https://helloproj3.onrender.com/api/hello")
       .then((res) => res.json())
       .then((data) => setMessage(data.message));
   }, []);
